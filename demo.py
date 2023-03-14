@@ -40,6 +40,7 @@ class Policy:
         }
 
     def do(self, params: dict, key: Optional[str] = '6C3C60DC1BF54982A54D5A8CB4D1817D') -> Optional[list]:
+        """发起请求"""
         json = {
             **{
                 'appId': self.app_id,
@@ -57,9 +58,11 @@ class Policy:
         return None if r.status_code != 200 else r.json()['data']
 
     def city_list(self):
+        """获取城市列表"""
         return self.do({'flag': '11'}, key='cd4faa2f4c0bdeb4cfd6093769f36482')
 
     def city(self, code: str):
+        """获取城市数据"""
         return self.do({'code': code}, key='6C3C60DC1BF54982A54D5A8CB4D1817D')
 
     def city_contact(self, code: str):
